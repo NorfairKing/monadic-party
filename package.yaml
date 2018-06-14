@@ -1,0 +1,44 @@
+name:                code
+version:             0.1.0.0
+github:              "NorfairKing/code"
+license:             BSD3
+author:              "Tom Sydney Kerckhove"
+maintainer:          "syd.kerckhove@gmail.com"
+copyright:           "Copyright: (c) 2018 Tom Sydney Kerckhove"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/NorfairKing/code#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- validity
+
+library:
+  source-dirs: src
+
+executables:
+  code-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - code
+
+tests:
+  code-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - code
+    - hspec
+    - QuickCheck
