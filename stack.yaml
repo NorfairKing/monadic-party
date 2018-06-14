@@ -5,7 +5,7 @@ packages:
 # https://github.com/NorfairKing/validity/tree/development
 extra-deps:
 
-  - git: git@github.com:NorfairKing/validity.git
+  - git: https://github.com/NorfairKing/validity
     commit: 4de0a0eff895ee2dc7f0bc17cf65d3acb0a0cd5a
     subdirs:
       - validity
