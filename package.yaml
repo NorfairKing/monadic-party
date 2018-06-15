@@ -14,8 +14,9 @@ description:         Please see the README on GitHub at <https://github.com/Norf
 
 dependencies:
 - base >= 4.7 && < 5
-- validity
+- aeson
 - time
+- validity
 - validity-time
 
 library:
