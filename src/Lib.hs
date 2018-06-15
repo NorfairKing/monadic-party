@@ -1,10 +1,12 @@
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module Lib where
 
 import GHC.Generics (Generic)
 
+import Data.Validity
 import Data.Aeson as JSON
 
 main :: IO ()
@@ -15,6 +17,15 @@ data Recurrence
     | EveryMonth
     deriving (Show, Eq, Generic)
 
-instance ToJSON Recurrence
+instance Validity Recurrence
 
-instance FromJSON Recurrence
+instance ToJSON Recurrence where
+    toJSON EveryDay = JSON.String "every-day"
+    toJSON EveryMonth = JSON.String "every-month"
+
+instance FromJSON Recurrence where
+    parseJSON =
+        JSON.withText "Recurrence" $ \t ->
+            case t of
+                "every-day" -> pure EveryDay
+                "every-month" -> pure EveryMonth

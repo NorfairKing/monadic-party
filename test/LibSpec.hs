@@ -24,3 +24,9 @@ spec = do
             JSON.encode EveryMonth `shouldBe` "\"every-month\""
         it "should read EveryMonth like this" $
             JSON.decode "\"every-month\"" `shouldBe` Just EveryMonth
+        it "should roundtrip" $
+            forAllValid $ \r ->
+                (decode (encode r) :: Maybe Recurrence) `shouldBe` (Just r)
+
+instance GenUnchecked Recurrence
+instance GenValid Recurrence
